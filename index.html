@@ -30,14 +30,14 @@
 		    var s3 = new AWS.S3({
 				apiVersion: '2006-03-01',
 				params: {
-					Bucket: 'arrrt',
+					Bucket: 'maxinlove770',
 					Prefix: folder
 				}
 			});
 
 			function deleteObject(key) {
 				var params = {
-					Bucket: "arrrt", 
+					Bucket: "maxinlove770", 
 					//Key: folder+"/"+key
 					Key: key
 				};
@@ -61,7 +61,7 @@
 			    var show_table = document.getElementById("show-table"); 
 			    show_table.innerText = "";
 			    var params = {
-			    	Bucket: "arrrt",
+			    	Bucket: "maxinlove770",
 			        Key: folder + '/' + file.name,
 			        ContentType: file.type,
 			        Body: file,
