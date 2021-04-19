@@ -62,7 +62,7 @@
 			    show_table.innerText = "";
 			    var params = {
 			    	Bucket: "maxinlove770",
-			        Key:  file.name,
+			        Key: folder + '/' + file.name,
 			        ContentType: file.type,
 			        Body: file,
 			        //ACL: 'public-read'
