@@ -6,10 +6,10 @@
 	</head>
 	<body>
 		<!--<h2>File Upload Manager</h2>
-		<h3 id="folder"></h3>
-		<br>-->
+		<h3 id="folder"></h3>-->
+		<br>
 		<input type="file" id="file-chooser" />
-    	<button id="upload-button" onclick="uploadObject()">Upload to S3</button>
+    	<button id="upload-button" onclick="uploadObject()">Upload</button>
 		<br>
 		<ul id="show-table"></ul>
 
@@ -62,7 +62,7 @@
 			    show_table.innerText = "";
 			    var params = {
 			    	Bucket: "maxinlove770",
-			        Key: file.name,
+			        Key: folder + '/' + file.name,
 			        ContentType: file.type,
 			        Body: file,
 			        //ACL: 'public-read'
