@@ -98,6 +98,10 @@
 								var el = document.createElement("li");
 								el.textContent = content.Key;
 								el.innerText = content.Key;
+								
+								fileName = (content.Key).split("/")[(content.Key).split("/").length - 1];
+																el.textContent = fileName;
+																el.innerText = fileName;
 
 								var deleteButton = document.createElement("button");
 								deleteButton.innerText = "Delete File";
