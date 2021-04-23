@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-    	<title>SFDC Bucket</title>
+    	<title>AWS Demo</title>
 	</head>
 	<body>
-		<!--<h2>File Upload Manager</h2>-->
+		<h2>File Upload Manager</h2>
 		<h3 id="folder"></h3>
-	
+		<br>
 		<input type="file" id="file-chooser" />
-    	<button id="upload-button" onclick="uploadObject()">Upload</button>
+    	<button id="upload-button" onclick="uploadObject()">Upload to S3</button>
 		<br>
 		<ul id="show-table"></ul>
 
@@ -20,24 +21,27 @@
 			var url = new URL(url_string);
 			var folder = url.searchParams.get("folder");
 			console.log(folder);
-			//document.getElementById('folder').innerText = "Content for Folder: "+folder;
+			document.getElementById('folder').innerText = "Content for Folder: "+folder;
 
 			// Initialize the Amazon Cognito credentials provider
 			AWS.config.region = 'us-east-1'; // Region
 			AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-			    IdentityPoolId: 'us-east-1:2987f9f2-16cc-46c1-af75-50835f57c623',
+			    IdentityPoolId: 'us-east-1:d77f720e-6884-44e0-bc40-a31cbcc67029',
 			});
+			var bucketName = 'maxinlove';
+
+			
 		    var s3 = new AWS.S3({
 				apiVersion: '2006-03-01',
 				params: {
-					Bucket: 'maxinlove770',
+					Bucket: bucketName,
 					Prefix: folder
 				}
 			});
 
 			function deleteObject(key) {
 				var params = {
-					Bucket: "maxinlove770", 
+					Bucket: bucketName, 
 					//Key: folder+"/"+key
 					Key: key
 				};
@@ -52,6 +56,26 @@
 				});
 			}
 
+			function downloadObject(key) {
+				var params = {
+					Bucket: bucketName, 
+					//Key: folder+"/"+key
+					Key: key
+				};
+				s3.getObject(params, function(err, data) {
+					if (err) alert(err, err.stack);
+					else {
+						console.log(data);
+						let blob = new Blob([data.Body], {type: data.ContentType});
+						let link = document.createElement('a');
+					    link.href = window.URL.createObjectURL(blob);
+					    fileName = (key).split("/")[(key).split("/").length - 1];
+					    link.download = fileName;
+					    link.click();
+					}
+				})
+			}
+
 			function uploadObject() {
 				var fileChooser = document.getElementById('file-chooser');
 				var file = fileChooser.files[0]
@@ -61,7 +85,7 @@
 			    var show_table = document.getElementById("show-table"); 
 			    show_table.innerText = "";
 			    var params = {
-			    	Bucket: "maxinlove770",
+			    	Bucket: bucketName,
 			        Key: folder + '/' + file.name,
 			        ContentType: file.type,
 			        Body: file,
@@ -96,12 +120,16 @@
 							}
 							else {
 								var el = document.createElement("li");
-								el.textContent = content.Key;
-								el.innerText = content.Key;
-								
 								fileName = (content.Key).split("/")[(content.Key).split("/").length - 1];
-																el.textContent = fileName;
-																el.innerText = fileName;
+								el.textContent = fileName;
+								el.innerText = fileName;
+
+								var downloadButton = document.createElement("button");
+								downloadButton.innerText = "Download File";
+								downloadButton.onclick = function () {
+					                downloadObject(content.Key);
+					            };
+								el.appendChild(downloadButton);
 
 								var deleteButton = document.createElement("button");
 								deleteButton.innerText = "Delete File";
@@ -112,7 +140,7 @@
 
 								show_table.appendChild(el);
 							}
-							});
+						});
 						}
 					});
 			    }
