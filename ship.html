@@ -1,46 +1,66 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en" style="background-color:#fafafa;">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="https://storage.googleapis.com/hello.603550.net/favicon.ico" type="image/x-icon">
-<style>
-body, html {
-  height: 100%;
-  margin: 0;
-   font-family: Arial, Helvetica, sans-serif;
-}
+	<title>{{ email_title }}</title>
+	<style>
 
-.bg {
+	h2, h3, p{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	}
 
-  background-image: url("https://storage.googleapis.com/hello.603550.net/hello.gif");
-  height: 100%; 
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+	p {
+	color: #999;
+	line-height: 34px;
+	}
 
-.hello {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: pink;
-}
+	   .button__cell {
+	   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	   font-size: 15px;
+	   text-align: center;
+	   font-weight: 600;
+	   text-decoration: none;
+	   color: #fff;
+	   padding: 17px 0 0 0;
+	   letter-spacing: .07em;
+	   background: #000000;
+	   border: 0;
+	   box-sizing: border-box;
+	   border-radius: 5px;
+	   width: 332px;
+	   display: block;
+	   height: 55px;"
+	}
 
- 
-  
-  
-</style>
+	</style>
 </head>
 <body>
- <div class="bg">
-  <div class="hello">
-    <h1 style="font-size:100px">Hello!</h1>
-
-
-  </div>
-</div>
+	<center>
+		<img alt="Artsake" src="https://cdn.shopify.com/s/files/1/0577/0687/3004/files/Artsake_Banner_c9e3dac2-154c-4ee4-a014-9719cdf445eb.png?v=1638322990" width="180px"><br>
+		<div style="padding-top:40px"></div><span class="order-number__text" style="font-size: 15px; font-weight: bold; line-height: 18px;">Order {{ order_name }}</span>
+		<h2>Your order is on the way</h2>
+		<p>Your order is on the way. Track your shipment to see the delivery status.</p><a class="button__cell" href="{{ order_status_url }}">View your order</a>
+		<p>or <a href="www.artsake.com">Visit our store</a><br></p>
+		<p>{{ fulfillment.tracking_company }} tracking number: <a href="{{ fulfillment.tracking_url }}">{{ fulfillment.tracking_numbers.first }}</a></p>
+		<div style="padding-top:20px"></div>
+		<h3 style="font-weight: normal; font-size: 20px;">Items in this shipment</h3>
+		<div style="padding-top:5px"></div>
+		<table class="row">
+			<tr class="order-list__item">
+				<td class="order-list__item__cell">
+					<table>
+						<tr>
+							<td><img align="left" class="order-list__product-image" height="60" src="{{ line.line_item  | img_url: 'compact_cropped' }}" width="60"></td>
+							<td class="order-list__product-description-cell"><span class="order-list__item-title" style="font-weight:bold;">{{ line_title }}&nbsp;×&nbsp;{{ line_display }}</span><br>
+							<span class="order-list__item-variant">{{ line.line_item.variant.title }}</span><br></td>
+						</tr>
+					</table>
+					<hr style="border-top: 1px solid #999;">
+				</td>
+			</tr>
+		</table>
+		<div style="padding-top:25px"></div>
+		<p class="disclaimer__subtext">If you have any questions, reply to this email or contact us at <a href="mailto:info@artsake.com">info@artsake.com</a></p>
+	</center>
 </body>
 </html>
