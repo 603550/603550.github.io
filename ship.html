@@ -52,7 +52,7 @@
 							<td><img align="left" class="order-list__product-image" height="60" src="{{ line.line_item  | img_url: 'compact_cropped' }}" width="60"></td>
 							<td class="order-list__product-description-cell"><span class="order-list__item-title" style="font-weight:bold;">{{ line_title }}&nbsp;×&nbsp;{{ line_display }}</span><br>
 							<span class="order-list__item-variant">{{ line.line_item.variant.title }}</span><br>
-                            <span class="order-list__item-variant">{{ fulfillment.tracking_company }} tracking number: <a href="{{ fulfillment.tracking_url }}">{{ fulfillment.tracking_numbers.first }}</a></span><br></td>
+                            <span class="order-list__item-variant">Tracking number: <a href="{{ fulfillment.tracking_url }}">{{ fulfillment.tracking_numbers.first }}</a></span><br></td>
 						</tr>
 					</table>
 					<hr style="border-top: 1px solid #999;">
