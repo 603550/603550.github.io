@@ -1,75 +1,61 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<form class="form-horizontal">
+<fieldset>
 
-<form>
-  <div class="form-group row">
-    <label for="text" class="col-4 col-form-label">First Name</label> 
-    <div class="col-8">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-address-card"></i>
-          </div>
-        </div> 
-        <input id="text" name="text" type="text" class="form-control" required="required">
-      </div>
-    </div>
+<!-- Form Name -->
+<legend>Form Name</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">First Name</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="">
+    
   </div>
-  <div class="form-group row">
-    <label for="text1" class="col-4 col-form-label">Last Name</label> 
-    <div class="col-8">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-address-card"></i>
-          </div>
-        </div> 
-        <input id="text1" name="text1" type="text" class="form-control" required="required">
-      </div>
-    </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Last Name</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="">
+    
   </div>
-  <div class="form-group row">
-    <label class="col-4">Gender</label> 
-    <div class="col-8">
-      <div class="custom-control custom-radio custom-control-inline">
-        <input name="radio" id="radio_0" type="radio" class="custom-control-input" value="Male"> 
-        <label for="radio_0" class="custom-control-label">Male</label>
-      </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input name="radio" id="radio_1" type="radio" class="custom-control-input" value="Female"> 
-        <label for="radio_1" class="custom-control-label">Female</label>
-      </div>
-    </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id">Gender</label>
+  <div class="col-md-8">
+    <button id="button1id" name="button1id" class="btn btn-default">Male</button>
+    <button id="button2id" name="button2id" class="btn btn-default">Female</button>
   </div>
-  <div class="form-group row">
-    <label for="text2" class="col-4 col-form-label">Phone</label> 
-    <div class="col-8">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-phone"></i>
-          </div>
-        </div> 
-        <input id="text2" name="text2" placeholder="(514) 555-1234" type="text" class="form-control" required="required">
-      </div>
-    </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Email</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="">
+    
   </div>
-  <div class="form-group row">
-    <label for="text3" class="col-4 col-form-label">Email</label> 
-    <div class="col-8">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-envelope"></i>
-          </div>
-        </div> 
-        <input id="text3" name="text3" type="text" class="form-control" required="required">
-      </div>
-    </div>
-  </div> 
-  <div class="form-group row">
-    <div class="offset-4 col-8">
-      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-    </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Phone</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="(514) 555-1234" class="form-control input-md" required="">
+    
   </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Continue</button>
+  </div>
+</div>
+
+</fieldset>
 </form>
