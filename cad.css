@@ -67,7 +67,7 @@
   font-weight: 700;
 }
 
-.text-block.dailygive-org {
+.text-block.bigmitzvah {
   padding-top: 0vw;
   font-weight: 400;
 }
@@ -248,7 +248,7 @@
     line-height: 3vw;
   }
 
-  .text-block.dailygive-org {
+  .text-block.bigmitzvah {
     font-size: 2.3vw;
     line-height: 4vw;
   }
@@ -301,7 +301,7 @@
     line-height: 4vw;
   }
   
-  .text-block.dailygive-org {
+  .text-block.bigmitzvah {
     font-size: 3.5vw;
     line-height: 4vw;
   }
