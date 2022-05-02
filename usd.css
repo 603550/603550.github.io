@@ -352,56 +352,56 @@
 
 @font-face {
   font-family: 'Gothambook';
-  src: url('../fonts/GothamBook.ttf') format('truetype');
+  src: url('https://storage.googleapis.com/cdn.tzdakah.org/fonts/GothamBook.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Gotham';
-  src: url('../fonts/Gotham-Black.otf') format('opentype');
+  src: url('https://storage.googleapis.com/cdn.tzdakah.org/fonts/Gotham-Black.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Gotham';
-  src: url('../fonts/Gotham-UltraItalic.otf') format('opentype'), url('../fonts/Gotham-BookItalic.otf') format('opentype');
+  src: url('https://storage.googleapis.com/cdn.tzdakah.org/fonts/Gotham-UltraItalic.otf') format('opentype'), url('https://storage.googleapis.com/cdn.tzdakah.org/fonts/Gotham-BookItalic.otf') format('opentype');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Gotham';
-  src: url('../fonts/Gotham-XLightItalic.otf') format('opentype');
+  src: url('https://storage.googleapis.com/cdn.tzdakah.org/fonts/Gotham-XLightItalic.otf') format('opentype');
   font-weight: 300;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Gotham';
-  src: url('../fonts/Gotham-Bold.otf') format('opentype');
+  src: url('https://storage.googleapis.com/cdn.tzdakah.org/fonts/Gotham-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Gotham';
-  src: url('../fonts/Gotham-ThinItalic.otf') format('opentype');
+  src: url('https://storage.googleapis.com/cdn.tzdakah.org/fonts/Gotham-ThinItalic.otf') format('opentype');
   font-weight: 100;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Gotham';
-  src: url('../fonts/Gotham-Thin.otf') format('opentype');
+  src: url('https://storage.googleapis.com/cdn.tzdakah.org/fonts/Gotham-Thin.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Gotham';
-  src: url('../fonts/Gotham-Light.otf') format('opentype'), url('../fonts/Gotham-XLight.otf') format('opentype');
+  src: url('https://storage.googleapis.com/cdn.tzdakah.org/fonts/Gotham-Light.otf') format('opentype'), url('https://storage.googleapis.com/cdn.tzdakah.org/fonts/Gotham-XLight.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
