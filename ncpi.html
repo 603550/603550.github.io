@@ -37,7 +37,7 @@
         }
 
         .card input, .card select, .card button {
-			font-family: 'Fira Code', monospace;
+            font-family: 'Fira Code', monospace;
             width: 100%;
             padding: 5px;
             margin: 8px 0;
@@ -49,6 +49,11 @@
             cursor: pointer;
             font-family: 'Fira Code', monospace;
             margin: auto;
+        }
+
+        .card input.error,
+        .card select.error {
+            border-color: green;
         }
     </style>
 </head>
@@ -78,6 +83,25 @@
     <script>
         function callAPI(e) {
             e.preventDefault();
+
+            var requiredFields = ["issue_age", "gender", "premium_period_years", "premium", "benefit_on_death"];
+            var hasError = false;
+
+            requiredFields.forEach(function(field) {
+                var fieldValue = $("#" + field).val();
+                if (fieldValue === "") {
+                    $("#" + field).addClass("error");
+                    hasError = true;
+                } else {
+                    $("#" + field).removeClass("error");
+                }
+            });
+
+            if (hasError) {
+                alert("Please fill in all the required fields.");
+                return;
+            }
+
             var data = {
                 issue_age: $("#issue_age").val(),
                 gender: $("#gender").val(),
