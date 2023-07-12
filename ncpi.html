@@ -64,9 +64,11 @@
             <label for="issue_age">Issue Age:</label><br>
             <input type="number" id="issue_age" name="issue_age" required><br>
             <label for="gender">Gender:</label><br>
-            <select id="gender" name="gender" required>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+            <select id="gender" name="gender" onchange="updateSmoker()" required>
+                <option value="male-nonsmoker">Male Non-Smoker</option>
+                <option value="female-nonsmoker">Female Non-Smoker</option>
+                <option value="male-smoker">Male Smoker</option>
+                <option value="female-smoker">Female Smoker</option>
             </select><br>
             <label for="premium_period_years">Premium Periods:</label><br>
             <input type="number" id="premium_period_years" name="premium_period_years" required><br>
@@ -81,6 +83,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
     <script>
+        function updateSmoker() {
+            var genderValue = $("#gender").val();
+            var isSmoker = false;
+
+            if (genderValue === "male-smoker" || genderValue === "female-smoker") {
+                isSmoker = true;
+            }
+
+            // Set the smoker value based on the selection
+            $("#smoker").val(isSmoker);
+        }
+
         function callAPI(e) {
             e.preventDefault();
 
@@ -102,10 +116,17 @@
                 return;
             }
 
+            var genderValue = $("#gender").val();
+            var isSmoker = false;
+
+            if (genderValue === "male-smoker" || genderValue === "female-smoker") {
+                isSmoker = true;
+            }
+
             var data = {
                 issue_age: $("#issue_age").val(),
-                gender: $("#gender").val(),
-                smoker: false,
+                gender: genderValue.includes("male") ? "male" : "female",
+                smoker: isSmoker,
                 premium_period_years: $("#premium_period_years").val(),
                 premium: $("#premium").val(),
                 benefit_on_death: $("#benefit_on_death").val()
