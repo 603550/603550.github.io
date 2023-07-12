@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Call</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+            color: #000;
+            font-family: 'Libre Franklin', sans-serif;
+        }
+        form {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+        .form-label-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        .form-label-group > input,
+        .form-label-group > label {
+            height: 3.125rem;
+            padding: .75rem;
+        }
+        .form-label-group > label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            margin-bottom: 0;
+            line-height: 1.5;
+            color: #495057;
+            pointer-events: none;
+            cursor: text;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+            transition: all .1s ease-in-out;
+        }
+        .form-label-group > input::-webkit-input-placeholder {
+            color: transparent;
+        }
+        .form-label-group input[required] {
+            border-color: #ced4da;
+        }
+        .form-label-group > input:invalid {
+            border-color: #dc3545;
+        }
+        .form-label-group > input:invalid ~ label {
+            color: #dc3545;
+        }
+        .form-label-group > input:focus ~ label,
+        .form-label-group > input:not(:placeholder-shown) ~ label,
+        .form-label-group input[required]:valid ~ label {
+            font-size: 12px;
+            color: #495057;
+            top: -.5em;
+            left: .75rem;
+            transition: all .1s ease-in-out;
+        }
+        @media (max-width: 768px) {
+            .form-label-group > input,
+            .form-label-group > label {
+                height: 4.5rem;
+                padding: 1rem;
+            }
+            .form-label-group > input:focus ~ label,
+            .form-label-group > input:not(:placeholder-shown) ~ label,
+            .form-label-group input[required]:valid ~ label {
+                font-size: 1.5rem;
+                top: -1rem;
+                left: 1rem;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+    <script>
+        function callAPI(e) {
+            e.preventDefault();
+            var data = {
+                issue_age: $("#issue_age").val(),
+                gender: "male",
+                smoker: false,
+                premium_period_years: $("#premium_period_years").val(),
+                premium: $("#premium").val(),
+                benefit_on_death: $("#benefit_on_death").val()
+            };
 
+            $.ajax({
+                type: 'POST',
+                url: 'https://m7xuz13sy7.execute-api.us-east-1.amazonaws.com/default/ncpi',
+                headers: {
+                    "x-api-key": "tNylmuq2YN4Cv4oFTPRas5t3JzNTOIVo7QvaCAnZ"
+                },
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    var csv = Papa.unparse(response);
+                    var csvData = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+                    var csvURL = window.URL.createObjectURL(csvData);
+                    var tempLink = document.createElement('a');
+                    tempLink.href = csvURL;
+                    tempLink.setAttribute('download', 'data.csv');
+                    tempLink.click();
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <form class="text-center" onsubmit="callAPI(event)">
+        <div class="form-label-group">
+            <input type="number" id="issue_age" class="form-control" placeholder="Issue Age" required="" autofocus="">
+            <label for="issue_age">Issue Age</label>
+        </div>
+        <div class="form-label-group">
+            <input type="number" id="premium_period_years" class="form-control" placeholder="Premium Period (Years)" required="">
+            <label for="premium_period_years">Premium Period (Years)</label>
+        </div>
+        <div class="form-label-group">
+            <input type="number" id="premium" class="form-control" placeholder="Premium" required="">
+            <label for="premium">Premium</label>
+        </div>
+        <div class="form-label-group">
+            <input type="number" id="benefit_on_death" class="form-control" placeholder="Benefit on Death" required="">
+            <label for="benefit_on_death">Benefit on Death</label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Call API and get CSV</button>
+    </form>
+</body>
+</html>
