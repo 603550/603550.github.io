@@ -5,28 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nightfall Time</title>
   <style>
-    @keyframes twinkling {
-      0% { background-position: 0 0; }
-      100% { background-position: -10000px 5000px; }
-    }
     body {
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      height: 100vh;
+      height: 50vh;
       margin: 0;
       background: #000 url('https://www.transparenttextures.com/patterns/stardust.png') repeat top center;
       color: #FFFFFF;
-      text-align: Top;
+      text-align: top;
       padding-top: 15vh; /* Adjust this value to position the content vertically */
-      overflow: hidden;
-      position: relative;
     }
     #rss-feed {
       padding: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      background: #000000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0);
       border-radius: 10px;
       max-width: 90%;
       margin: auto;
@@ -35,24 +29,12 @@
       font-size: 2em;
       font-weight: bold;
     }
-    #moon {
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      width: 100px;
-      height: 100px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg') no-repeat center center;
-      background-size: cover;
-      border-radius: 50%;
-      transform: translateX(-50%);
-    }
   </style>
 </head>
 <body>
-  <div id="moon"></div>
   <div id="rss-feed">
-    <h1>Montreal Nightfall</h1>
-    <div id="nightfall-time">Loading...</div>
+    <center></center><h1>Montreal Nightfall</h1>
+    <div id="nightfall-time">Loading...</center></div>
   </div>
   <script>
     async function fetchRSS() {
