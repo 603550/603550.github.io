@@ -29,16 +29,20 @@
       font-size: 1.8em;
       font-weight: normal;
     }
- 
   </style>
 </head>
 <body>
-
   <div id="rss-feed">
     <center><h1>Montreal Nightfall</h1>
     <div id="nightfall-time">Loading...</center></div>
   </div>
   <script>
+    function formatDate(dateStr) {
+      const [month, day, year] = dateStr.slice(1, -1).split('/');
+      const date = new Date(`${year}-${month}-${day}`);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
     async function fetchRSS() {
       const rssUrl = 'https://www.chabad.org/tools/rss/zmanim.xml?locationId=345&locationType=1&bDef=0&before=18';
       const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(rssUrl);
@@ -53,7 +57,12 @@
         items.forEach(item => {
           const description = item.querySelector('description').textContent;
           if (description.includes("Nightfall (Tzeit Hakochavim)")) {
-            nightfallDescription = description.replace("Nightfall (Tzeit Hakochavim) - ", "");
+            nightfallDescription = description.replace("Nightfall (Tzeit Hakochavim) - ", "").replace(" -- ", " / ");
+            const datePart = nightfallDescription.match(/\(\d+\/\d+\/\d+\)/);
+            if (datePart) {
+              const formattedDate = formatDate(datePart[0]);
+              nightfallDescription = nightfallDescription.replace(datePart[0], formattedDate);
+            }
           }
         });
         document.getElementById('nightfall-time').innerHTML = nightfallDescription;
