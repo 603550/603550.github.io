@@ -5,22 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nightfall Time</title>
   <style>
+    @keyframes twinkling {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 5000px; }
+    }
     body {
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      height: 50vh;
+      height: 100vh;
       margin: 0;
-      background-color: #000000;
+      background: #000 url('https://www.transparenttextures.com/patterns/stardust.png') repeat top center;
       color: #FFFFFF;
-      text-align: top;
+      text-align: center;
       padding-top: 15vh; /* Adjust this value to position the content vertically */
+      overflow: hidden;
     }
     #rss-feed {
       padding: 20px;
-      background: #000000;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       border-radius: 10px;
       max-width: 90%;
       margin: auto;
@@ -32,9 +37,9 @@
   </style>
 </head>
 <body>
-  <div id="rss-feed"><center>
+  <div id="rss-feed">
     <h1>Montreal Nightfall</h1>
-    <div id="nightfall-time">Loading...</center></div>
+    <div id="nightfall-time">Loading...</div>
   </div>
   <script>
     async function fetchRSS() {
