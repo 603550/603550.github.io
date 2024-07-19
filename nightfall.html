@@ -15,11 +15,13 @@
   <script>
     async function fetchRSS() {
       const rssUrl = 'https://www.chabad.org/tools/rss/zmanim.xml?locationId=345&locationType=1&bDef=0&before=18';
+      const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(rssUrl);
+
       try {
-        const response = await fetch(rssUrl);
-        const text = await response.text();
+        const response = await fetch(proxyUrl);
+        const data = await response.json();
         const parser = new DOMParser();
-        const xml = parser.parseFromString(text, 'application/xml');
+        const xml = parser.parseFromString(data.contents, 'application/xml');
         const items = xml.querySelectorAll('item');
         let nightfallDescription = 'Nightfall time not found.';
         items.forEach(item => {
