@@ -21,6 +21,7 @@
       text-align: center;
       padding-top: 15vh; /* Adjust this value to position the content vertically */
       overflow: hidden;
+      position: relative;
     }
     #rss-feed {
       padding: 20px;
@@ -34,9 +35,21 @@
       font-size: 2em;
       font-weight: bold;
     }
+    #moon {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg') no-repeat center center;
+      background-size: cover;
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
   </style>
 </head>
 <body>
+  <div id="moon"></div>
   <div id="rss-feed">
     <h1>Montreal Nightfall</h1>
     <div id="nightfall-time">Loading...</div>
