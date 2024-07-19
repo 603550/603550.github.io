@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nightfall Times</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #rss-feed ul { list-style-type: none; padding: 0; }
+    #rss-feed li { margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>Nightfall Times</h1>
+  <div id="rss-feed">Loading...</div>
+  <script>
+    async function fetchRSS() {
+      const rssUrl = 'https://www.chabad.org/tools/rss/zmanim.xml?locationId=345&locationType=1&bDef=0&before=18';
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        const items = data.items;
+        let html = '<ul>';
+        items.forEach(item => {
+          if (item.title.includes("Nightfall (Tzeit Hakochavim)")) {
+            html += `<li>${item.title}</li>`;
+          }
+        });
+        html += '</ul>';
+        document.getElementById('rss-feed').innerHTML = html;
+      } catch (error) {
+        console.error('Error fetching RSS feed:', error);
+        document.getElementById('rss-feed').innerHTML = 'Error loading feed.';
+      }
+    }
+
+    fetchRSS();
+  </script>
+</body>
+</html>
