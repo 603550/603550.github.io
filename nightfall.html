@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nightfall Time</title>
+  <title>Montreal Nightfall Time</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,8 +13,8 @@
       height: 100vh;
       margin: 0;
       background-color: #f0f0f0;
-      text-align: center;
-      padding-top: 1vh; /* Adjust this value to position the content vertically */
+      text-align: Top;
+      padding-top: 15vh; /* Adjust this value to position the content vertically */
     }
     #rss-feed {
       padding: 20px;
@@ -24,11 +24,15 @@
       max-width: 90%;
       margin: auto;
     }
+    #nightfall-time {
+      font-size: 2em;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <div id="rss-feed">
-    <h1>Nightfall Time</h1>
+    <h1>Montreal Nightfall Time</h1>
     <div id="nightfall-time">Loading...</div>
   </div>
   <script>
@@ -46,7 +50,7 @@
         items.forEach(item => {
           const description = item.querySelector('description').textContent;
           if (description.includes("Nightfall (Tzeit Hakochavim)")) {
-            nightfallDescription = description;
+            nightfallDescription = description.replace("Nightfall (Tzeit Hakochavim) - ", "");
           }
         });
         document.getElementById('nightfall-time').innerHTML = nightfallDescription;
