@@ -39,8 +39,8 @@
   <script>
     function formatDate(dateStr) {
       const [month, day, year] = dateStr.slice(1, -1).split('/');
-      const date = new Date(`${year}-${month}-${day}`);
-      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      return `${months[month - 1]} ${day}, ${year}`;
     }
 
     async function fetchRSS() {
